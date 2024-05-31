@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] GameObject _goal;
+    bool _isStop = false;
+
+    private void Awake()
     {
-        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
-        
+        if (!_isStop)
+            _rigidbody.AddForce(0f, 0f, -1f);
+        else
+            _rigidbody.velocity = Vector3.zero;
+
+        if (this.gameObject.transform.position.z <= _goal.gameObject.transform.position.z)
+        {
+            _isStop = true;
+        }
     }
 }
