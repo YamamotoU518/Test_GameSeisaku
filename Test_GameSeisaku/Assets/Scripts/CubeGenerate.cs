@@ -12,9 +12,9 @@ public class CubeGenerate : MonoBehaviour
 
     void Start()
     {
-        _start = _startObj.transform.position.z - 5;
+        _start = _startObj.transform.position.z + 5;
         _goal = _goalObj.transform.position.z;
-        for (float i = _start; i > _goal; i -= 5)
+        for (float i = _start; i < _goal; i += 5)
         {
             Instantiate(_obj, new Vector3(0, 1, i), Quaternion.identity);
         }
