@@ -20,6 +20,7 @@ public class Cube : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            GameManager.Instance._score += 1;
             Destroy(this.gameObject);
         }
     }
