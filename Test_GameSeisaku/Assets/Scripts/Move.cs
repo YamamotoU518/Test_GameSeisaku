@@ -7,6 +7,7 @@ public class Move : MonoBehaviour
     [SerializeField] Rigidbody _rigidbody;
     [SerializeField] GameObject _goal;
     bool _isStop = false;
+    float _speed = 0.01f;
 
     private void Awake()
     {
@@ -20,12 +21,15 @@ public class Move : MonoBehaviour
 
     void Update()
     {
+        float x = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * x * _speed);
+
         if (!_isStop)
-            _rigidbody.AddForce(0f, 0f, -1f);
+            _rigidbody.AddForce(0f, 0f, 1f);
         else
             _rigidbody.velocity = Vector3.zero;
 
-        if (this.gameObject.transform.position.z <= _goal.gameObject.transform.position.z)
+        if (this.gameObject.transform.position.z >= _goal.gameObject.transform.position.z)
         {
             _isStop = true;
         }
